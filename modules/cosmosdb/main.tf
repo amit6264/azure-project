@@ -57,3 +57,22 @@ resource "azurerm_private_endpoint" "this" {
     is_manual_connection = false
   }
 }
+
+
+
+
+resource "azurerm_private_dns_zone_group" "this" {
+
+  name = "cosmos-dns"
+
+  private_endpoint_id =
+  azurerm_private_endpoint.this.id
+
+  private_dns_zone_configs {
+
+    name = "cosmos-zone"
+
+    private_dns_zone_id =
+    var.cosmos_dns_zone_id
+  }
+}
