@@ -22,3 +22,9 @@ output "mysql_dns_zone_id" {
   value =
   azurerm_private_dns_zone.mysql.id
 }
+
+output "cosmos_dns_zone_id" {
+
+  value =
+  azurerm_private_dns_zone.cosmos.id
+}
