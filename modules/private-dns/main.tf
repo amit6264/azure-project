@@ -152,3 +152,35 @@ resource "azurerm_private_dns_zone_virtual_network_link" "mysql" {
   virtual_network_id =
   each.value
 }
+
+
+
+
+resource "azurerm_private_dns_zone" "cosmos" {
+
+  name = "privatelink.documents.azure.com"
+
+  resource_group_name =
+  var.resource_group_name
+
+  tags = var.tags
+}
+
+
+
+
+resource "azurerm_private_dns_zone_virtual_network_link" "cosmos_links" {
+
+  for_each = var.vnet_ids
+
+  name = "cosmos-${each.key}"
+
+  resource_group_name =
+  var.resource_group_name
+
+  private_dns_zone_name =
+  azurerm_private_dns_zone.cosmos.name
+
+  virtual_network_id =
+  each.value
+}
