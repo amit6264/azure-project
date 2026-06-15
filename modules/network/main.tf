@@ -192,3 +192,35 @@ resource "azurerm_subnet_network_security_group_association" "appgw" {
   network_security_group_id =
   azurerm_network_security_group.this.id
 }
+
+
+
+
+resource "azurerm_subnet" "mysql" {
+
+  name = "snet-mysql"
+
+  resource_group_name = var.resource_group_name
+
+  virtual_network_name =
+  azurerm_virtual_network.this.name
+
+  address_prefixes = [
+    var.mysql_subnet_cidr
+  ]
+
+  delegation {
+
+    name = "mysql"
+
+    service_delegation {
+
+      name =
+      "Microsoft.DBforMySQL/flexibleServers"
+
+      actions = [
+        "Microsoft.Network/virtualNetworks/subnets/join/action"
+      ]
+    }
+  }
+}
