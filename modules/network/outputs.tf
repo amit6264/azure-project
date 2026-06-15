@@ -21,3 +21,7 @@ output "firewall_subnet_id" {
 output "appgw_subnet_id" {
   value = azurerm_subnet.appgw.id
 }
+
+output "mysql_subnet_id" {
+  value = azurerm_subnet.mysql.id
+}
