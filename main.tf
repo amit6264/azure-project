@@ -99,6 +99,35 @@ module "identity" {
 
 
 
+module "rbac" {
+
+  source = "./modules/rbac"
+
+  subscription_id =
+  module.identity.subscription_id
+
+  aks_principal_id =
+  module.identity.aks_principal_id
+
+  github_principal_id =
+  module.identity.github_principal_id
+
+  acr_id =
+  module.acr.id
+
+  keyvault_id =
+  module.keyvault.id
+
+  storage_account_id =
+  module.storage.id
+
+  cosmosdb_id =
+  module.cosmosdb.id
+}
+
+
+
+
 module "acr" {
 
   source = "./modules/acr"
