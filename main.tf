@@ -144,3 +144,34 @@ module "keyvault" {
 
   tags = local.common_tags
 }
+
+
+
+
+
+module "monitoring" {
+
+  source = "./modules/monitoring"
+
+  resource_group_name =
+  module.shared_rg.name
+
+  location = "westeurope"
+
+  log_analytics_name =
+  "law-prod"
+
+  monitor_workspace_name =
+  "amw-prod"
+
+  grafana_name =
+  "grafana-prod"
+
+  private_endpoint_subnet_id =
+  module.network["eu"].private_endpoint_subnet_id
+
+  monitor_private_dns_zone_id =
+  module.private_dns.monitor_dns_zone_id
+
+  tags = local.common_tags
+}
