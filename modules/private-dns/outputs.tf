@@ -17,3 +17,8 @@ output "oms_dns_zone_id" {
 output "aks_dns_zone_id" {
   value = azurerm_private_dns_zone.aks.id
 }
+
+output "mysql_dns_zone_id" {
+  value =
+  azurerm_private_dns_zone.mysql.id
+}
