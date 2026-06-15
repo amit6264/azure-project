@@ -19,6 +19,8 @@ regions = {
     firewall_subnet_cidr = "10.0.3.0/24"
 
     appgw_subnet_cidr = "10.0.4.0/24"
+
+    mysql_subnet_cidr = "10.0.5.0/24"
   }
 
   asia = {
@@ -34,6 +36,8 @@ regions = {
     firewall_subnet_cidr = "10.1.3.0/24"
 
     appgw_subnet_cidr = "10.1.4.0/24"
+
+    mysql_subnet_cidr = "10.1.5.0/24"
   }
 
   me = {
@@ -49,6 +53,8 @@ regions = {
     firewall_subnet_cidr = "10.2.3.0/24"
 
     appgw_subnet_cidr = "10.2.4.0/24"
+
+    mysql_subnet_cidr = "10.2.5.0/24"
   }
 }
 
