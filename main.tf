@@ -222,3 +222,36 @@ module "static_web_app" {
 
   tags = local.common_tags
 }
+
+
+
+
+
+module "mysql" {
+
+  source = "./modules/mysql"
+
+  for_each = var.regions
+
+  name = "mysql-${each.key}-prod"
+
+  resource_group_name =
+  module.resource_groups[each.key].name
+
+  location =
+  each.value.location
+
+  delegated_subnet_id =
+  module.network[each.key].mysql_subnet_id
+
+  private_dns_zone_id =
+  module.private_dns.mysql_dns_zone_id
+
+  admin_username =
+  var.mysql_admin_username
+
+  admin_password =
+  var.mysql_admin_password
+
+  tags = local.common_tags
+}
