@@ -175,3 +175,33 @@ module "monitoring" {
 
   tags = local.common_tags
 }
+
+
+
+
+
+module "apim" {
+
+  source = "./modules/apim"
+
+  name = "apim-prod-global"
+
+  resource_group_name =
+  module.shared_rg.name
+
+  location = "westeurope"
+
+  publisher_name =
+  "Platform Team"
+
+  publisher_email =
+  "platform@company.com"
+
+  appgw_subnet_id =
+  module.network["eu"].appgw_subnet_id
+
+  instrumentation_key =
+  module.monitoring.application_insights_connection_string
+
+  tags = local.common_tags
+}
