@@ -372,3 +372,36 @@ module "app_gateway" {
 
   tags = local.common_tags
 }
+
+
+
+
+module "frontdoor" {
+
+  source = "./modules/frontdoor"
+
+  name = "fd-global-prod"
+
+  resource_group_name =
+  module.shared_rg.name
+
+  app_gateways = {
+
+    eu = {
+      hostname =
+      module.app_gateway["eu"].public_ip
+    }
+
+    asia = {
+      hostname =
+      module.app_gateway["asia"].public_ip
+    }
+
+    me = {
+      hostname =
+      module.app_gateway["me"].public_ip
+    }
+  }
+
+  tags = local.common_tags
+}
