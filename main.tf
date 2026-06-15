@@ -448,3 +448,37 @@ module "backup" {
 
   tags = local.common_tags
 }
+
+
+
+
+
+module "aks" {
+
+  source = "./modules/aks"
+
+  for_each = var.regions
+
+  cluster_name =
+  "aks-${each.key}-prod"
+
+  location =
+  each.value.location
+
+  resource_group_name =
+  module.resource_groups[each.key].name
+
+  subnet_id =
+  module.network[each.key].aks_subnet_id
+
+  acr_id =
+  module.acr.id
+
+  log_analytics_workspace_id =
+  module.monitoring.log_analytics_workspace_id
+
+  grafana_id =
+  module.monitoring.grafana_id
+
+  tags = local.common_tags
+}
