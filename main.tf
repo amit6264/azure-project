@@ -205,3 +205,20 @@ module "apim" {
 
   tags = local.common_tags
 }
+
+
+
+
+module "static_web_app" {
+
+  source = "./modules/static-web-app"
+
+  name = "swa-prod-platform"
+
+  resource_group_name =
+  module.shared_rg.name
+
+  location = "westeurope"
+
+  tags = local.common_tags
+}
