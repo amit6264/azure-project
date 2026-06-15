@@ -255,3 +255,46 @@ module "mysql" {
 
   tags = local.common_tags
 }
+
+
+
+
+module "cosmosdb" {
+
+  source = "./modules/cosmosdb"
+
+  name = "cosmos-prod"
+
+  resource_group_name =
+  module.shared_rg.name
+
+  location = "westeurope"
+
+  private_endpoint_subnet_id =
+  module.network["eu"].private_endpoint_subnet_id
+
+  tags = local.common_tags
+}
+
+
+
+
+module "redis" {
+
+  source = "./modules/redis"
+
+  for_each = var.regions
+
+  name = "redis-${each.key}-prod"
+
+  resource_group_name =
+  module.resource_groups[each.key].name
+
+  location =
+  each.value.location
+
+  private_endpoint_subnet_id =
+  module.network[each.key].private_endpoint_subnet_id
+
+  tags = local.common_tags
+}
