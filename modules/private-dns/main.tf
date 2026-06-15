@@ -184,3 +184,16 @@ resource "azurerm_private_dns_zone_virtual_network_link" "cosmos_links" {
   virtual_network_id =
   each.value
 }
+
+
+
+
+resource "azurerm_private_dns_zone" "storage_blob" {
+
+  name = "privatelink.blob.core.windows.net"
+
+  resource_group_name =
+  var.resource_group_name
+
+  tags = var.tags
+}
