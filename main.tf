@@ -74,3 +74,24 @@ module "private_dns" {
 
   tags = local.common_tags
 }
+
+
+
+
+module "identity" {
+
+  source = "./modules/identity"
+
+  resource_group_name =
+  module.shared_rg.name
+
+  location = "westeurope"
+
+  environment = var.environment
+
+  github_org = var.github_org
+
+  github_repo = var.github_repo
+
+  tags = local.common_tags
+}
