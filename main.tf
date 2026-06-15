@@ -428,3 +428,23 @@ module "defender" {
 
 
 data "azurerm_client_config" "current" {}
+
+
+
+
+module "backup" {
+
+  source = "./modules/backup"
+
+  name = "rsv-prod"
+
+  resource_group_name =
+  module.shared_rg.name
+
+  location = "westeurope"
+
+  storage_account_id =
+  module.storage.id
+
+  tags = local.common_tags
+}
