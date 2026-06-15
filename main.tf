@@ -118,3 +118,29 @@ module "acr" {
 
   tags = local.common_tags
 }
+
+
+
+
+module "keyvault" {
+
+  source = "./modules/keyvault"
+
+  name = "kv-prod-platform"
+
+  location = "westeurope"
+
+  resource_group_name =
+  module.shared_rg.name
+
+  tenant_id =
+  module.identity.tenant_id
+
+  private_endpoint_subnet_id =
+  module.network["eu"].private_endpoint_subnet_id
+
+  keyvault_private_dns_zone_id =
+  module.private_dns.keyvault_dns_zone_id
+
+  tags = local.common_tags
+}
