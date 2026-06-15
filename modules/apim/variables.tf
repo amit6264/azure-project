@@ -30,3 +30,7 @@ variable "appgw_subnet_id" {
 variable "tags" {
   type = map(string)
 }
+
+variable "instrumentation_key" {
+  type = string
+}
