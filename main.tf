@@ -300,3 +300,27 @@ module "redis" {
 
   tags = local.common_tags
 }
+
+
+
+
+
+module "storage" {
+
+  source = "./modules/storage"
+
+  name = "stprodplatform001"
+
+  resource_group_name =
+  module.shared_rg.name
+
+  location = "westeurope"
+
+  private_endpoint_subnet_id =
+  module.network["eu"].private_endpoint_subnet_id
+
+  storage_dns_zone_id =
+  module.private_dns.storage_blob_dns_zone_id
+
+  tags = local.common_tags
+}
