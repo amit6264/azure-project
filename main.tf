@@ -41,3 +41,36 @@ module "network" {
 
   tags = local.common_tags
 }
+
+
+
+module "shared_rg" {
+
+  source = "./modules/resource-group"
+
+  name = "rg-shared-prod"
+
+  location = "westeurope"
+
+  tags = local.common_tags
+}
+
+
+
+
+module "private_dns" {
+
+  source = "./modules/private-dns"
+
+  resource_group_name =
+  module.shared_rg.name
+
+  vnet_ids = {
+
+    for k, v in module.network :
+
+    k => v.vnet_id
+  }
+
+  tags = local.common_tags
+}
