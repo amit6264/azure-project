@@ -324,3 +324,26 @@ module "storage" {
 
   tags = local.common_tags
 }
+
+
+
+
+module "firewall" {
+
+  source = "./modules/firewall"
+
+  for_each = var.regions
+
+  name = "afw-${each.key}-prod"
+
+  resource_group_name =
+  module.resource_groups[each.key].name
+
+  location =
+  each.value.location
+
+  firewall_subnet_id =
+  module.network[each.key].firewall_subnet_id
+
+  tags = local.common_tags
+}
