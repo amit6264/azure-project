@@ -28,3 +28,10 @@ output "cosmos_dns_zone_id" {
   value =
   azurerm_private_dns_zone.cosmos.id
 }
+
+
+output "storage_blob_dns_zone_id" {
+
+  value =
+  azurerm_private_dns_zone.storage_blob.id
+}
