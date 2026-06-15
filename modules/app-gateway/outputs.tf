@@ -11,3 +11,10 @@ output "waf_policy_id" {
   value =
   azurerm_web_application_firewall_policy.this.id
 }
+
+
+output "hostname" {
+
+  value =
+  azurerm_public_ip.this.fqdn
+}
