@@ -17,3 +17,7 @@ variable "private_endpoint_subnet_id" {
 variable "tags" {
   type = map(string)
 }
+
+variable "cosmos_dns_zone_id" {
+  type = string
+}
