@@ -405,3 +405,26 @@ module "frontdoor" {
 
   tags = local.common_tags
 }
+
+
+
+
+module "defender" {
+
+  source = "./modules/defender"
+
+  subscription_id = data.azurerm_client_config.current.subscription_id
+
+  enable_containers = true
+
+  enable_storage = true
+
+  enable_keyvault = true
+
+  enable_cosmosdb = true
+
+  enable_servers = true
+}
+
+
+data "azurerm_client_config" "current" {}
