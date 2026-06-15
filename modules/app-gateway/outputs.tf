@@ -13,8 +13,8 @@ output "waf_policy_id" {
 }
 
 
-output "hostname" {
+output "public_ip" {
 
   value =
-  azurerm_public_ip.this.fqdn
+  azurerm_public_ip.this.ip_address
 }
