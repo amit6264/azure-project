@@ -258,7 +258,6 @@ module "mysql" {
 
 
 
-
 module "cosmosdb" {
 
   source = "./modules/cosmosdb"
@@ -272,6 +271,9 @@ module "cosmosdb" {
 
   private_endpoint_subnet_id =
   module.network["eu"].private_endpoint_subnet_id
+
+  cosmos_dns_zone_id =
+  module.private_dns.cosmos_dns_zone_id
 
   tags = local.common_tags
 }
