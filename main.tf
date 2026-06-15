@@ -347,3 +347,28 @@ module "firewall" {
 
   tags = local.common_tags
 }
+
+
+
+
+
+
+module "app_gateway" {
+
+  source = "./modules/app-gateway"
+
+  for_each = var.regions
+
+  name = "agw-${each.key}-prod"
+
+  resource_group_name =
+  module.resource_groups[each.key].name
+
+  location =
+  each.value.location
+
+  subnet_id =
+  module.network[each.key].appgw_subnet_id
+
+  tags = local.common_tags
+}
