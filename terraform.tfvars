@@ -1,3 +1,7 @@
+github_org  = "amit-patidar"
+github_repo = "azure-project"
+
+
 environment = "prod"
 
 regions = {
@@ -47,3 +51,5 @@ regions = {
     appgw_subnet_cidr = "10.2.4.0/24"
   }
 }
+
+
